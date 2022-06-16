@@ -1,3 +1,4 @@
+@echo off
 git add .
 git commit -m "Commit %time%"
 git branch -M main
