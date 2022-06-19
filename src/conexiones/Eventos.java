@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tareafinal_prnii;
+package conexiones;
+
+import java.util.EventObject;
 
 /**
  *
  * @author Adalberto
  */
-public class TareaFinal_PRNII {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Eventos extends EventObject{
     
+    Conectar cn;
+    public Eventos(Object source, Conectar _cn) {
+        super(source);
+        cn = _cn;
+    }
 }
