@@ -18,20 +18,16 @@ setHorizontalAlignment(JLabel.CENTER);
 - **JButtonNew:** Esta clase dibuja un boton, esta compuesto por un JPanel y un JLabel en su
 	interior esto para tener mejor personalizacion que con un boton ordinarion.
 
-- **MetodosG:** Esta es una clase que contiene metodos en general:
-	1. 
+- **MetodosG:** Esta es una clase que contiene metodos en general: 
 ```java
 charsToString(char[] chars) //convierte una coleccion de char en string
 ```
-	1.
 ```java
 setplaceHolder(javax.swing.text.JTextComponent txtComponent, String Texto, int estiloFuente, float Alpha) // Configura el placeholder en el JTextComponent
 ```
-	1.
 ```java
 getIcono(String ruta) //Obtiene el 'Icono' de una imagen
 ```
-	1.
 ```java
 getImage(String ruta) //Obtiene la Image de una ruta
 ```
