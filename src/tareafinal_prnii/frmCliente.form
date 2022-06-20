@@ -41,6 +41,11 @@
   </Layout>
   <SubComponents>
     <Component class="tareafinal_prnii.frmpTitulo" name="frmpTitulo1">
+      <Properties>
+        <Property name="colorBotonMaximizar" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

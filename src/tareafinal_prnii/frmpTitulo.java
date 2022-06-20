@@ -192,7 +192,7 @@ public class frmpTitulo extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCerrarMouseEntered
 
     private void btnCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseExited
-       this.btnCerrar.setFondo(this.getBackground());
+       this.btnCerrar.setFondo(this.btnMinimizar. getBackground());
         this.btnCerrar.setTextoColor(Color.BLACK);
     }//GEN-LAST:event_btnCerrarMouseExited
 

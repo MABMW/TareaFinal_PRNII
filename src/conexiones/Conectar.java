@@ -71,7 +71,7 @@ public class Conectar {
      * Conecta a la base de datos de mysql
      * @return true si se ha conectado con exito, false si la conexion fue fallida
      **/
-    public boolean conector() {
+    public boolean conectarBase() {
         boolean conecto = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
