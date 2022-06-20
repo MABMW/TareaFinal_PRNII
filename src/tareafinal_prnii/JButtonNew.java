@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.BeanProperty;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import static javax.swing.BorderFactory.createBevelBorder;
@@ -29,7 +30,7 @@ public class JButtonNew extends JPanel {
         this.setSize(tamanio);
         this.setPreferredSize(tamanio);
         //Configurar el color
-        this.setBackground(Color.WHITE);
+        //this.setBackground(Color.WHITE);
         Background = this.getBackground();
         colorMouseEntered = Background.darker();
         colorMouseExited = Background;
@@ -118,8 +119,19 @@ public class JButtonNew extends JPanel {
      * @param texto es la cadena a mostrar en el control
      *
      */
+    @BeanProperty(preferred = true, visualUpdate = true, description = "Texto del control")
     public void setTexto(String texto) {
         Label.setText(texto);
+    }
+    
+    /**
+     * Retorna el texto del control
+     **/
+    public String getTexto(){
+        return Label.getText();
+    }
+    public void setTextoColor(Color fg){
+        Label.setForeground(fg);
     }
 
     /**
@@ -138,6 +150,7 @@ public class JButtonNew extends JPanel {
      * @param color es el color que se aplicara el fondo
      *
      */
+    @BeanProperty(preferred = true, visualUpdate = true, description = "Define el color del fondo")
     public void setFondo(Color color) {
         this.setBackground(color);
         this.Background = color;

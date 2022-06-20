@@ -5,6 +5,8 @@
  */
 package tareafinal_prnii;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Adalberto
@@ -44,5 +46,18 @@ public class MetodosG {
             placeholder.changeAlpha(0.75f);
         }
         placeholder.changeStyle(estiloFuente);
+    }
+    
+    public javax.swing.Icon getIcono(String ruta){
+        String icopath = ruta;
+        ImageIcon myicono = new ImageIcon(getClass().getClassLoader().getResource(icopath));
+        //this.lblIcono.setIcon(myicons);
+        return myicono;
+    }
+    public java.awt.Image getImage(String ruta){
+        String icopath = ruta;
+        ImageIcon myicono = new ImageIcon(getClass().getClassLoader().getResource(icopath));
+        //this.lblIcono.setIcon(myicons);
+        return myicono.getImage();
     }
 }

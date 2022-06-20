@@ -1,5 +1,7 @@
 package tareafinal_prnii;
 
+import java.awt.GraphicsEnvironment;
+
 /**
  *
  * @author Adalberto
@@ -12,23 +14,31 @@ public class frmCliente extends javax.swing.JFrame {
     public frmCliente() {
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        frmpTitulo1 = new tareafinal_prnii.frmpTitulo();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(frmpTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(frmpTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 356, Short.MAX_VALUE))
         );
 
         pack();
@@ -70,5 +80,6 @@ public class frmCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private tareafinal_prnii.frmpTitulo frmpTitulo1;
     // End of variables declaration//GEN-END:variables
 }
