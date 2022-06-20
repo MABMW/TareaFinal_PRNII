@@ -12,6 +12,8 @@ import javax.swing.SwingUtilities;
 /**
  *
  * @author Adalberto
+ * En este codigo se ocupa una libreria externa que se llama FiveCodMover la cual
+ * sirve para poder mover un frame en undecorated https://www.youtube.com/watch?v=ST76rBeARC8
  */
 public class frmpTitulo extends javax.swing.JPanel {
     

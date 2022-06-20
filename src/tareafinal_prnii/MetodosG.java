@@ -17,6 +17,7 @@ public class MetodosG {
      * Convierte una coleccion de tipo char en una cadena
      *
      * @param chars colecion de tipo char
+     * @return 
      *
      */
     public static String charsToString(char[] chars) {
