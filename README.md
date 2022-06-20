@@ -20,17 +20,17 @@ setHorizontalAlignment(JLabel.CENTER);
 
 - **MetodosG:** Esta es una clase que contiene metodos en general:
 	1. ```java
-charsToString(char[] chars) //convierte una coleccion de char en string
-```
+	charsToString(char[] chars) //convierte una coleccion de char en string
+		```
 	1. ```java
-setplaceHolder(javax.swing.text.JTextComponent txtComponent, String Texto, int estiloFuente, float Alpha) // Configura el placeholder en el JTextComponent
-```
+	setplaceHolder(javax.swing.text.JTextComponent txtComponent, String Texto, int estiloFuente, float Alpha) // Configura el placeholder en el JTextComponent
+	```
+	1. ```java 
+	getIcono(String ruta) //Obtiene el 'Icono' de una imagen
+	```
 	1. ```java
-getIcono(String ruta) //Obtiene el 'Icono' de una imagen
-```
-	1. ```java
-getImage(String ruta) //Obtiene la Image de una ruta
-```
+	getImage(String ruta) //Obtiene la Image de una ruta
+	```
 
 ------------
 
@@ -38,4 +38,3 @@ getImage(String ruta) //Obtiene la Image de una ruta
 1. Contiene la clase *Conectar.java* la cual hace la conexion a la base de datos mysql
 	esta clase tiene 3 eventos correctaConexion, erroneaConexion, ClaseNoEncontrada. Esto Para
 	tener una mejor interaccion con el usuario.
-
