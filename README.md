@@ -19,16 +19,20 @@ setHorizontalAlignment(JLabel.CENTER);
 	interior esto para tener mejor personalizacion que con un boton ordinarion.
 
 - **MetodosG:** Esta es una clase que contiene metodos en general:
-	1. ```java
+	1. 
+```java
 charsToString(char[] chars) //convierte una coleccion de char en string
 ```
-	1. ```java
+	1.
+```java
 setplaceHolder(javax.swing.text.JTextComponent txtComponent, String Texto, int estiloFuente, float Alpha) // Configura el placeholder en el JTextComponent
 ```
-	1. ```java 
+	1.
+```java
 getIcono(String ruta) //Obtiene el 'Icono' de una imagen
 ```
-	1. ```java
+	1.
+```java
 getImage(String ruta) //Obtiene la Image de una ruta
 ```
 
