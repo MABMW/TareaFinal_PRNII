@@ -35,7 +35,8 @@ public class TextPrompt extends JLabel
     public TextPrompt(String text, JTextComponent component) {
         this(text, component, Show.ALWAYS);
     }
-
+    
+    
     public TextPrompt(String text, JTextComponent component, Show show) {
         this.component = component;
         setShow(show);
@@ -45,7 +46,7 @@ public class TextPrompt extends JLabel
         setFont(component.getFont());
         setForeground(component.getForeground());
         setBorder(new EmptyBorder(component.getInsets()));
-        setHorizontalAlignment(JLabel.LEADING);
+        setHorizontalAlignment(JLabel.CENTER);//Se modifico la posicion del TEXTO
 
         component.addFocusListener(this);
         document.addDocumentListener(this);
