@@ -1,6 +1,7 @@
 package tareafinal_prnii;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GraphicsEnvironment;
 import java.beans.BeanProperty;
@@ -9,12 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Adalberto
- * En este codigo se ocupa una libreria externa que se llama FiveCodMover la cual
- * sirve para poder mover un frame en undecorated https://www.youtube.com/watch?v=ST76rBeARC8
- */
 public class frmpTitulo extends javax.swing.JPanel {
     
     private String titulo = "";
@@ -27,6 +22,10 @@ public class frmpTitulo extends javax.swing.JPanel {
         this.btnCerrar.setFondo(this.getBackground());
         this.btnMaximizar.setFondo(this.getBackground());
         this.btnMinimizar.setFondo(this.getBackground());
+    }
+    @BeanProperty(preferred = true,visualUpdate= true, description = "Configura la fuente del texto")
+    public void setFuente(Font fuente){
+        lblTitulo.setFont(fuente);
     }
     
     @BeanProperty(preferred = true, visualUpdate = true, description = "Oculta el boton maximizar")
@@ -67,6 +66,7 @@ public class frmpTitulo extends javax.swing.JPanel {
     public Color getColorBotonCerrar(){
         return this.btnCerrar.getBackground();
     }
+    
     @BeanProperty(preferred =true,visualUpdate= true,description = "Configura el icono del formulario")
     public void setIcono(String ruta){
         String icopath = ruta;

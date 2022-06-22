@@ -13,11 +13,7 @@ import static javax.swing.BorderFactory.createBevelBorder;
 import javax.swing.GroupLayout;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
-/**
- *
- * @author Adalberto
- * Este es un control que simula un boton para una mayor personalizacion
- */
+
 public class JButtonNew extends JPanel {
 
     private final JLabel Label = new JLabel();

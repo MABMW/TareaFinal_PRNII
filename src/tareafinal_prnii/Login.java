@@ -1,12 +1,10 @@
 package tareafinal_prnii;
 
 import conexiones.*;
+import java.awt.Font;
 import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
-/**
- *
- * @author Adalberto
- */
 public class Login extends javax.swing.JFrame {
 
     Conectar conectar;
@@ -14,16 +12,34 @@ public class Login extends javax.swing.JFrame {
     CambioEventos CE = new CambioEventos() {
         @Override
         public void onCorrectaConexion(Eventos ev) {
-            JOptionPane.showMessageDialog(null, "Conexion Exitosa");
+            // JOptionPane.showMessageDialog(null, "Conexion Exitosa");
         }
 
         @Override
-        public void onErroneaConexion(Eventos ev, String MensajeError) {
-            JOptionPane.showMessageDialog(rootPane, "Error: " + MensajeError + "\nEs posible que sus credenciales este mal escritas.");
+        public void onErroneaConexion(Eventos ev, SQLException MensajeError) {
+            switch (MensajeError.getErrorCode()) {
+                case 1251:
+                    JOptionPane.showMessageDialog(null, "El usuario es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 1045:
+                    JOptionPane.showMessageDialog(null, "La Constraseña es incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 1146:
+                    JOptionPane.showMessageDialog(null, "La tabla no existe", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 1007:
+                    JOptionPane.showMessageDialog(null, "La base de datos que se quiere crear, ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                case 1049:
+                    JOptionPane.showMessageDialog(null, "La base de datos no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                default:
+                    break;
+            }
         }
 
         @Override
-        public void onClassNoEncontrada(Eventos ev, String MensajeError) {
+        public void onClassNoEncontrada(Eventos ev, ClassNotFoundException MensajeError) {
             JOptionPane.showMessageDialog(rootPane, "Error: " + MensajeError + "\n La libreria requerida no se encuentra");
         }
     };
@@ -32,6 +48,8 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setIconImage(new MetodosG().getImage("IMG/Icono.png"));
         setLocationRelativeTo(null);
+        this.barraTitulo.setFuente(new java.awt.Font(Font.SANS_SERIF, Font.BOLD, 16));
+        this.btnIniciarSesion.setFuente(new java.awt.Font(Font.DIALOG, Font.BOLD, 26));
         MetodosG.setplaceHolder(this.txtUsuario, "Nombre de usuario", java.awt.Font.ITALIC, 0.70f);
         MetodosG.setplaceHolder(this.jptxtPassword, "Ingrese la contraseña", java.awt.Font.ITALIC, 0.70f);
         conectar = new Conectar();
@@ -43,12 +61,14 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        frmpTitulo1 = new tareafinal_prnii.frmpTitulo();
+        barraTitulo = new tareafinal_prnii.frmpTitulo();
         jLabel1 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jptxtPassword = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        btnIngresar = new javax.swing.JButton();
+        jchkShowContrasenia = new javax.swing.JCheckBox();
+        btnIniciarSesion = new tareafinal_prnii.JButtonNew();
+        jchkModoAvanzado = new javax.swing.JCheckBox();
+        txtNombreBaseDeDatos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -57,13 +77,13 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        frmpTitulo1.setBackground(new java.awt.Color(255, 255, 255));
-        frmpTitulo1.setBordesBotones(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        frmpTitulo1.setColorBotonCerrar(new java.awt.Color(255, 255, 255));
-        frmpTitulo1.setColorBotonMinimizar(java.awt.Color.white);
-        frmpTitulo1.setIcono("IMG\\Icono.png");
-        frmpTitulo1.setTitulo("Login");
-        frmpTitulo1.setVisibleMaximizar(false);
+        barraTitulo.setBackground(new java.awt.Color(255, 255, 255));
+        barraTitulo.setBordesBotones(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        barraTitulo.setColorBotonCerrar(new java.awt.Color(255, 255, 255));
+        barraTitulo.setColorBotonMinimizar(java.awt.Color.white);
+        barraTitulo.setIcono("IMG\\Icono.png");
+        barraTitulo.setTitulo("Login");
+        barraTitulo.setVisibleMaximizar(false);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -78,49 +98,65 @@ public class Login extends javax.swing.JFrame {
         jptxtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 0, 255)));
         jptxtPassword.setEchoChar('*');
 
-        jCheckBox1.setText("Mostrar Contraseña");
-        jCheckBox1.addChangeListener(new javax.swing.event.ChangeListener() {
+        jchkShowContrasenia.setText("Mostrar Contraseña");
+        jchkShowContrasenia.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jCheckBox1StateChanged(evt);
+                jchkShowContraseniaStateChanged(evt);
             }
         });
 
-        btnIngresar.setFont(new java.awt.Font("Myanmar Text", 3, 16)); // NOI18N
-        btnIngresar.setText("Ingresar");
-        btnIngresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+        btnIniciarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnIniciarSesion.setTexto("Ingresar");
+        btnIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnIniciarSesionMouseClicked(evt);
             }
         });
+
+        jchkModoAvanzado.setText("ModoAvanzado");
+        jchkModoAvanzado.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jchkModoAvanzadoStateChanged(evt);
+            }
+        });
+
+        txtNombreBaseDeDatos.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        txtNombreBaseDeDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombreBaseDeDatos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(51, 51, 255)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frmpTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(barraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(txtUsuario)
             .addComponent(jptxtPassword)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 189, Short.MAX_VALUE)
-                .addComponent(jCheckBox1))
-            .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jchkModoAvanzado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(jchkShowContrasenia))
+            .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtNombreBaseDeDatos)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(frmpTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(barraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jptxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
-                .addGap(7, 7, 7)
-                .addComponent(btnIngresar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jchkShowContrasenia)
+                    .addComponent(jchkModoAvanzado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombreBaseDeDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -138,25 +174,40 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        conectar.setCredenciales(this.txtUsuario.getText(), MetodosG.charsToString(this.jptxtPassword.getPassword()));
-        if (conectar.conectarBase()) {
-            frmCliente frmC = new frmCliente();
-            frmC.setVisible(true);
-            this.setVisible(false);
+    private void jchkShowContraseniaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkShowContraseniaStateChanged
+        if (this.jchkShowContrasenia.isSelected()) {
+            this.jptxtPassword.setEchoChar((char) 0);
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Se cerrara la aplicacion ");
-            System.exit(0);
+            this.jptxtPassword.setEchoChar('*');
         }
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }//GEN-LAST:event_jchkShowContraseniaStateChanged
 
-    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
-        if(this.jCheckBox1.isSelected()){
-            this.jptxtPassword.setEchoChar((char)0);
-        }else{
-            this.jptxtPassword.setEchoChar('*'); 
+    private void btnIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseClicked
+        
+        if (!this.txtNombreBaseDeDatos.getText().equals("")) {
+            conectar.setCredenciales(this.txtUsuario.getText(), MetodosG.charsToString(this.jptxtPassword.getPassword()), this.txtNombreBaseDeDatos.getText());
+        } else {
+            conectar.setCredenciales(this.txtUsuario.getText(), MetodosG.charsToString(this.jptxtPassword.getPassword()));
         }
-    }//GEN-LAST:event_jCheckBox1StateChanged
+        
+        if (conectar.conectarBase()) {
+            TablaEditor est = new TablaEditor(conectar, "clientes");
+            JOptionPane.showMessageDialog(rootPane, est.getCount());
+        } else {
+            this.txtUsuario.setText("");
+            this.jptxtPassword.setText("");
+        }
+    }//GEN-LAST:event_btnIniciarSesionMouseClicked
+
+    private void jchkModoAvanzadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkModoAvanzadoStateChanged
+        if (this.jchkModoAvanzado.isSelected()) {
+            this.txtNombreBaseDeDatos.setText("");
+            this.txtNombreBaseDeDatos.setVisible(true);
+        } else {
+            this.txtNombreBaseDeDatos.setText("");
+            this.txtNombreBaseDeDatos.setVisible(false);
+        }
+    }//GEN-LAST:event_jchkModoAvanzadoStateChanged
 
     /**
      * @param args the command line arguments
@@ -194,12 +245,14 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
-    private tareafinal_prnii.frmpTitulo frmpTitulo1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private tareafinal_prnii.frmpTitulo barraTitulo;
+    private tareafinal_prnii.JButtonNew btnIniciarSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JCheckBox jchkModoAvanzado;
+    private javax.swing.JCheckBox jchkShowContrasenia;
     private javax.swing.JPasswordField jptxtPassword;
+    private javax.swing.JTextField txtNombreBaseDeDatos;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
