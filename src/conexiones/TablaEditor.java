@@ -98,41 +98,71 @@ public class TablaEditor {
      * Busca un Registro en especifico proporcionando una clave de registro mas su valor
      * @param clavePrimaria nombre de la clave primaria del registro
      * @param valorClave valor de la clave en el registro
+     * @return retorna un ResultSet
      **/
     public ResultSet buscardato(String clavePrimaria, String valorClave) {
         String values = String.format("select * from %s where %s='%s'", nombreTabla, clavePrimaria, valorClave);
         return conectar.getValores(values);
     }
-
+    
+    /**
+     * Cuenta cuantos registros se encuentra en la tabla
+     * @param clavePrimaria nombre de la clave primaria del registro
+     * @return retorna un ResultSet
+     **/
     public ResultSet contarRegistros(String clavePrimaria) {
         String values = String.format("select count(%s) from %s", clavePrimaria, nombreTabla);
         return conectar.getValores(values);
     }
-
+    
+    /**
+     * Retorna el ultimo registro del dato tabla
+     * @param clavePrimaria nombre de la clave primaria del registro
+     * @return retorna un ResultSet
+     **/
     public ResultSet ultimoRegistro(String clavePrimaria) {
         String values = String.format("select max(%s) from %s", clavePrimaria, nombreTabla);
         return conectar.getValores(values);
     }
-
+    
+    /**
+     * Retorna una tabla completa
+     * @param columnasTabla las columanas de la tabla que se quieren modificar
+     * @return retorna un ResultSet
+     **/
     public ResultSet mostrarTabla(String[] columnasTabla) {
         String values = String.format("select %s from %s", ordenarValores(columnasTabla,metodos.mostrarTabla), nombreTabla);
         return conectar.getValores(values);
     }
+    
     /**
      * Obtiene el numero de registro de la tabla
      * @return el numero de registros
      **/
     public int getCount(){
         int contador=0;
-        ResultSet gf = contarRegistros("codigo");
+        ResultSet gf;
+        gf = contarRegistros("codigo");
         try {
             while(gf.next()){
-                contador = gf.getInt(1);
+                return gf.getInt(1);
             }
         } catch (SQLException ex) {
-            contador=0;
+            return 0;
         }
         return contador;
+    }
+    
+    public int getUltimoResgistro(){
+        ResultSet rs = this.ultimoRegistro("Idalumno");
+        try{
+            while(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(SQLException ex){
+            return 0;
+        }
+        return 0;
     }
     
     private void sms(String values) {

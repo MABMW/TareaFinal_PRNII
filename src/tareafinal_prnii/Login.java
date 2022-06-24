@@ -12,12 +12,12 @@ public class Login extends javax.swing.JFrame {
     CambioEventos CE = new CambioEventos() {
         @Override
         public void onCorrectaConexion(Eventos ev) {
-            // JOptionPane.showMessageDialog(null, "Conexion Exitosa");
+            
         }
 
         @Override
         public void onErroneaConexion(Eventos ev, SQLException MensajeError) {
-            switch (MensajeError.getErrorCode()) {
+            switch (MensajeError.getErrorCode()) {//se obtiene el codigo del error para mostrar un mensaje especifico
                 case 1251:
                     JOptionPane.showMessageDialog(null, "El usuario es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
                     break;
@@ -52,6 +52,7 @@ public class Login extends javax.swing.JFrame {
         this.btnIniciarSesion.setFuente(new java.awt.Font(Font.DIALOG, Font.BOLD, 26));
         MetodosG.setplaceHolder(this.txtUsuario, "Nombre de usuario", java.awt.Font.ITALIC, 0.70f);
         MetodosG.setplaceHolder(this.jptxtPassword, "Ingrese la contraseña", java.awt.Font.ITALIC, 0.70f);
+        MetodosG.setplaceHolder(this.txtNombreBaseDeDatos, "Nombre base de datos", java.awt.Font.ITALIC, 0.70f);
         conectar = new Conectar();
         conectar.addEventListener(CE);
     }
@@ -114,15 +115,17 @@ public class Login extends javax.swing.JFrame {
         });
 
         jchkModoAvanzado.setText("ModoAvanzado");
-        jchkModoAvanzado.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jchkModoAvanzadoStateChanged(evt);
+        jchkModoAvanzado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jchkModoAvanzadoMouseClicked(evt);
             }
         });
 
         txtNombreBaseDeDatos.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         txtNombreBaseDeDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombreBaseDeDatos.setText("grado");
         txtNombreBaseDeDatos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(51, 51, 255)));
+        txtNombreBaseDeDatos.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,23 +194,24 @@ public class Login extends javax.swing.JFrame {
         }
         
         if (conectar.conectarBase()) {
-            TablaEditor est = new TablaEditor(conectar, "clientes");
-            JOptionPane.showMessageDialog(rootPane, est.getCount());
+           listaAlumnos lstAlumnos = new listaAlumnos(conectar);
+           lstAlumnos.setVisible(true);
+           this.setVisible(false);
         } else {
             this.txtUsuario.setText("");
             this.jptxtPassword.setText("");
         }
     }//GEN-LAST:event_btnIniciarSesionMouseClicked
 
-    private void jchkModoAvanzadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkModoAvanzadoStateChanged
+    private void jchkModoAvanzadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jchkModoAvanzadoMouseClicked
         if (this.jchkModoAvanzado.isSelected()) {
-            this.txtNombreBaseDeDatos.setText("");
-            this.txtNombreBaseDeDatos.setVisible(true);
+            this.txtNombreBaseDeDatos.setText("grado");
+            this.txtNombreBaseDeDatos.setEnabled(true);
         } else {
-            this.txtNombreBaseDeDatos.setText("");
-            this.txtNombreBaseDeDatos.setVisible(false);
+            this.txtNombreBaseDeDatos.setText("grado");
+            this.txtNombreBaseDeDatos.setEnabled(false);
         }
-    }//GEN-LAST:event_jchkModoAvanzadoStateChanged
+    }//GEN-LAST:event_jchkModoAvanzadoMouseClicked
 
     /**
      * @param args the command line arguments

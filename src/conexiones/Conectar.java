@@ -123,6 +123,7 @@ public class Conectar {
         }
         return resultados;
     }
+    
     /**
      * Configura las credenciales para acceder a la base de datos
      * @param NombreUsuario el nombre de usuario para conectar con mysql
