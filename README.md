@@ -4,6 +4,10 @@
 	funcionamiento es el de poder mover un frame en estado "undecorated".
 	Para ello se ocupa dos eventos mousePressed y mouseDragged.
 
+#### Importar la libreria FiveCodMove (modificar )
+![error1](https://raw.githubusercontent.com/MABMW/TareaFinal_PRNII/main/ImgInstrucciones/explicacion.gif)
+
+
 - **frmpTitulo:** Es un JPanel Form el cual su funcion es proporcionar una barra de titulo
 	cuando se activa la propiedad undecorated en JFrame, reemplazando a la original.
 
