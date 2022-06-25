@@ -78,6 +78,7 @@ public class TablaEditor {
     public boolean modificar(String[] newValores, String[] columnasEditar, String clavePrimaria, String valorClave) {
         this.columnasTabla = columnasEditar;
         String values = String.format("update %s set %s where %s='%s'", nombreTabla, ordenarValores(newValores, metodos.modificar), clavePrimaria, valorClave);
+        //sms(values);
         return conectar.AMB(values);
     }
 
@@ -153,6 +154,10 @@ public class TablaEditor {
         return contador;
     }
     
+    /**
+     * Devuelve el valor maximo del registro
+     * @return retorna un int
+     **/
     public int getUltimoResgistro(){
         ResultSet rs = this.ultimoRegistro("Idalumno");
         try{
@@ -164,7 +169,9 @@ public class TablaEditor {
         }
         return 0;
     }
-    
+    /**
+     * Metodo para depurar la salida de comandos para mysql
+     **/
     private void sms(String values) {
         java.awt.TextArea t = new java.awt.TextArea();
         t.setText(values);

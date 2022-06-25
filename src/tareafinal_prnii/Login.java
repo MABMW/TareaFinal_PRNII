@@ -14,7 +14,6 @@ public class Login extends javax.swing.JFrame {
         public void onCorrectaConexion(Eventos ev) {
             
         }
-
         @Override
         public void onErroneaConexion(Eventos ev, SQLException MensajeError) {
             switch (MensajeError.getErrorCode()) {//se obtiene el codigo del error para mostrar un mensaje especifico
@@ -33,11 +32,12 @@ public class Login extends javax.swing.JFrame {
                 case 1049:
                     JOptionPane.showMessageDialog(null, "La base de datos no se encuentra.", "Error", JOptionPane.ERROR_MESSAGE);
                     break;
+                case 1452:
+                    JOptionPane.showMessageDialog(null, "Error en la llave restringida", "Error", JOptionPane.ERROR_MESSAGE);
                 default:
                     break;
             }
         }
-
         @Override
         public void onClassNoEncontrada(Eventos ev, ClassNotFoundException MensajeError) {
             JOptionPane.showMessageDialog(rootPane, "Error: " + MensajeError + "\n La libreria requerida no se encuentra");

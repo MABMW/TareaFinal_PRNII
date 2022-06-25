@@ -88,7 +88,7 @@
                     <Column editable="false" title="Apellido1" type="java.lang.String"/>
                     <Column editable="false" title="Apellido2" type="java.lang.String"/>
                     <Column editable="false" title="Nombres" type="java.lang.String"/>
-                    <Column editable="true" title="Sexo" type="java.lang.Object"/>
+                    <Column editable="false" title="Sexo" type="java.lang.Object"/>
                     <Column editable="false" title="FechaNacimiento" type="java.lang.Object"/>
                   </Table>
                 </Property>

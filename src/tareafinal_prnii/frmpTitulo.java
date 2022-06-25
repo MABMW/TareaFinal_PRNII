@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 public class frmpTitulo extends javax.swing.JPanel {
-
+    
     private String titulo = "";
     private int alineacion = SwingConstants.CENTER;
     private boolean visible = true;
