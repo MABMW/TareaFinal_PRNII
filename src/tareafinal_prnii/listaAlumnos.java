@@ -14,7 +14,7 @@ public class listaAlumnos extends javax.swing.JFrame {
     Conectar conectar = new Conectar();
     TablaEditor tablaEditor;
     DefaultTableModel modeloTabla = new DefaultTableModel();
-    String[] encabezados = {"Codigo", "Apellido1", "Apellido2", "Nombres"};
+    String[] encabezados = {"Codigo", "Apellido1", "Apellido2", "Nombres","Sexo", "Fecha Nacimiento"};
 
     public listaAlumnos() {
         initComponents();
@@ -44,6 +44,7 @@ public class listaAlumnos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -60,14 +61,14 @@ public class listaAlumnos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Apellido1", "Apellido2", "Nombres"
+                "Codigo", "Apellido1", "Apellido2", "Nombres", "Sexo", "FechaNacimiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,7 +100,7 @@ public class listaAlumnos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frmpTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+            .addComponent(frmpTitulo1, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -110,7 +111,7 @@ public class listaAlumnos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(frmpTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,7 +155,10 @@ public class listaAlumnos extends javax.swing.JFrame {
                     apellido1 = rs.getString(2);
                     apellido2 = rs.getString(3);
                     nombres = rs.getString(4);
-                    sexo = rs.getString(5);
+                    if(!"M".equals(rs.getString(5)))
+                        sexo= "Femenino";
+                    else
+                        sexo = "Masculino";
                     fechaNacimiento = rs.getString(6);
                 }
                 this.modeloTabla.setColumnCount(6);
@@ -164,7 +168,16 @@ public class listaAlumnos extends javax.swing.JFrame {
                 modeloTabla.setValueAt(apellido1, cuantos, 1);
                 modeloTabla.setValueAt(apellido2, cuantos, 2);
                 modeloTabla.setValueAt(nombres, cuantos, 3);
+                modeloTabla.setValueAt(sexo, cuantos, 4);
+                modeloTabla.setValueAt(fechaNacimiento,cuantos,5);
+                this.jTable1.getColumnModel().getColumn(0).setResizable(false);
+                this.jTable1.getColumnModel().getColumn(1).setResizable(false);
+                this.jTable1.getColumnModel().getColumn(2).setResizable(false);
+                this.jTable1.getColumnModel().getColumn(3).setResizable(false);
+                this.jTable1.getColumnModel().getColumn(4).setResizable(false);
+                this.jTable1.getColumnModel().getColumn(5).setResizable(false);
                 this.jTable1.setModel(modeloTabla);
+                this.jTable1.setEditingRow(-1);
             } catch (SQLException ex) {
                 Logger.getLogger(listaAlumnos.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -92,10 +92,12 @@ public class Login extends javax.swing.JFrame {
 
         txtUsuario.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtUsuario.setText("root");
         txtUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(51, 51, 255)));
 
         jptxtPassword.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jptxtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jptxtPassword.setText("12345678");
         jptxtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 0, 255)));
         jptxtPassword.setEchoChar('*');
 
