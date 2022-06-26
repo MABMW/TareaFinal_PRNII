@@ -1,11 +1,11 @@
 package tareafinal_prnii;
 
-
 import conexiones.Conectar;
 import conexiones.TablaEditor;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 public class listaAlumnos extends javax.swing.JFrame {
@@ -217,8 +217,13 @@ public class listaAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnGenerarPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPdfActionPerformed
-        plantillaPdf pPdf = new plantillaPdf("C:\\UsersLocal\\Escritorio"+"\\reportePrueba.pdf",this.modeloTabla);
-        pPdf.platillaAlumno();
+        JFileChooser jfc = new JFileChooser();
+        int select = jfc.showOpenDialog(null);
+        if (select == JFileChooser.APPROVE_OPTION) {
+            plantillaPdf pPdf = new plantillaPdf(jfc.getSelectedFile()+".pdf", this.modeloTabla);
+            pPdf.platillaAlumno();
+        }
+
     }//GEN-LAST:event_btnGenerarPdfActionPerformed
 
     /**

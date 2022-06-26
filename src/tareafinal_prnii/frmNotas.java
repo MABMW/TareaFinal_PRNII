@@ -5,6 +5,7 @@ import conexiones.TablaEditor;
 import java.awt.Font;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 public class frmNotas extends javax.swing.JFrame {
@@ -280,10 +281,14 @@ public class frmNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeActionPerformed
-        
-        plantillaPdf plantillaNota = new plantillaPdf("C:\\UsersLocal\\Escritorio"+"\\reportePruebaNotas.pdf",this.modeloTabla);
-        infoAlumno info = new infoAlumno(this.txtId.getText(),this.txtNombre.getText(),this.txtSexo.getText(),this.txtFechaNacimiento.getText(),this.notas);
-        plantillaNota.plantillaNotas(info);
+
+        JFileChooser jfc = new JFileChooser();
+        int select = jfc.showOpenDialog(null);
+        if (select == JFileChooser.APPROVE_OPTION) {
+            plantillaPdf plantillaNota = new plantillaPdf(jfc.getSelectedFile()+".pdf", this.modeloTabla);
+            infoAlumno info = new infoAlumno(this.txtId.getText(), this.txtNombre.getText(), this.txtSexo.getText(), this.txtFechaNacimiento.getText(), this.notas);
+            plantillaNota.plantillaNotas(info);
+        }
     }//GEN-LAST:event_btnInformeActionPerformed
 
     //Define los datos que se mostraran en el frm
@@ -336,8 +341,7 @@ public class frmNotas extends javax.swing.JFrame {
                 break;
         }
     }
-    
-    
+
     //Configura el modeloTabla para el jtable, aqui se agregan las notas al jtable
     private void setModeloTabla() {
         int cualColumna = 0;
@@ -361,7 +365,7 @@ public class frmNotas extends javax.swing.JFrame {
             }
         }
     }
-    
+
     //Activa o desactiva los controles para no poder editar o editar los datos
     private void modoEditar() {
         if (modoEdicion) {
@@ -392,15 +396,17 @@ public class frmNotas extends javax.swing.JFrame {
         }
         return array;
     }
+
     //Convierte un vector en String
-    private String VectorToString(String[] ds){
+    private String VectorToString(String[] ds) {
         String Array = "";
         for (int i = 0; i < ds.length; i++) {
-            Array += ds[i]+", ";
+            Array += ds[i] + ", ";
         }
-        Array = Array.substring(0, Array.length()-2);
+        Array = Array.substring(0, Array.length() - 2);
         return Array;
     }
+
     //Configura el objeto listaAlumnos para obtener acceso a la tabla alumnos
     public void setListaAlumnos(listaAlumnos lstAlumnos) {
         this.lstAlumnos = lstAlumnos;
