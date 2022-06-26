@@ -26,13 +26,15 @@ public class frmNotas extends javax.swing.JFrame {
 
     public frmNotas() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setIconImage(new MetodosG().getImage("IMG/icono.png"));
+        setLocationRelativeTo(null);
         this.barraTitulo.setFuente(new java.awt.Font(Font.MONOSPACED, Font.BOLD, 16));
     }
 
     public frmNotas(Conectar conectar) {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setIconImage(new MetodosG().getImage("IMG/icono.png"));
+        setLocationRelativeTo(null);
         this.barraTitulo.setFuente(new java.awt.Font(Font.MONOSPACED, Font.BOLD, 16));
         this.conectar = conectar;
         tablaEditor = new TablaEditor(conectar, "notaAlumnos");
@@ -70,7 +72,11 @@ public class frmNotas extends javax.swing.JFrame {
             }
         });
 
+        jpContenedor.setBackground(new java.awt.Color(255, 255, 255));
+
+        barraTitulo.setBackground(new java.awt.Color(255, 255, 255));
         barraTitulo.setFrmPrincipal(true);
+        barraTitulo.setIcono("IMG\\icono.png");
         barraTitulo.setTitulo("Ingreso Notas");
         barraTitulo.setVisibleMaximizar(false);
 

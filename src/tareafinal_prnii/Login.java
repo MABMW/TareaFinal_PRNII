@@ -46,7 +46,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        this.setIconImage(new MetodosG().getImage("IMG/Icono.png"));
+        this.setIconImage(new MetodosG().getImage("IMG/icono.png"));
         setLocationRelativeTo(null);
         this.barraTitulo.setFuente(new java.awt.Font(Font.SANS_SERIF, Font.BOLD, 16));
         this.btnIniciarSesion.setFuente(new java.awt.Font(Font.DIALOG, Font.BOLD, 26));
@@ -83,7 +83,7 @@ public class Login extends javax.swing.JFrame {
         barraTitulo.setBordesBotones(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         barraTitulo.setColorBotonCerrar(new java.awt.Color(255, 255, 255));
         barraTitulo.setColorBotonMinimizar(java.awt.Color.white);
-        barraTitulo.setIcono("IMG\\Icono.png");
+        barraTitulo.setIcono("IMG\\icono.png");
         barraTitulo.setTitulo("Login");
         barraTitulo.setVisibleMaximizar(false);
 

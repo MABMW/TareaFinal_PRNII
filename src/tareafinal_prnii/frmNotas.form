@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="locationByPlatform" type="boolean" value="true"/>
@@ -39,6 +39,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jpContenedor">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -136,7 +141,11 @@
       <SubComponents>
         <Component class="tareafinal_prnii.frmpTitulo" name="barraTitulo">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="frmPrincipal" type="boolean" value="true"/>
+            <Property name="icono" type="java.lang.String" value="IMG\u005cicono.png" containsInvalidXMLChars="true"/>
             <Property name="titulo" type="java.lang.String" value="Ingreso Notas"/>
             <Property name="visibleMaximizar" type="boolean" value="false"/>
           </Properties>

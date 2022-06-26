@@ -22,13 +22,15 @@ public class listaAlumnos extends javax.swing.JFrame {
 
     public listaAlumnos() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setIconImage(new MetodosG().getImage("IMG/icono.png"));
+        setLocationRelativeTo(null);
         this.frmpTitulo1.setFrmPrincipal(true);
     }
 
     public listaAlumnos(Conectar conectar) {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setIconImage(new MetodosG().getImage("IMG/icono.png"));
+        setLocationRelativeTo(null);
         this.frmpTitulo1.setFrmPrincipal(true);
         this.conectar = conectar;
         tablaEditor = new TablaEditor(conectar, "alumno");//alumno es el nombre de la tabla
@@ -55,6 +57,7 @@ public class listaAlumnos extends javax.swing.JFrame {
         });
 
         frmpTitulo1.setFuente(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        frmpTitulo1.setIcono("IMG\\icono.png");
         frmpTitulo1.setTitulo("Listado de Alumnos");
         frmpTitulo1.setToolTipText("");
         frmpTitulo1.setVisibleMaximizar(false);
