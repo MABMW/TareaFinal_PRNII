@@ -45,6 +45,9 @@ public class frmpTitulo extends javax.swing.JPanel {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
         this.lblTitulo.setText(titulo);
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        if(frame!=null)
+            frame.setTitle(titulo);
     }
 
     public String getTitulo() {

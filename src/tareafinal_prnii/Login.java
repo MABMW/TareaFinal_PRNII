@@ -72,6 +72,7 @@ public class Login extends javax.swing.JFrame {
         txtNombreBaseDeDatos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         setLocationByPlatform(true);
         setUndecorated(true);
         setResizable(false);

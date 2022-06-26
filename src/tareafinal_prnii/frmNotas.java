@@ -58,6 +58,7 @@ public class frmNotas extends javax.swing.JFrame {
         txtSexo = new javax.swing.JTextField();
         lblSexo = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
+        btnInforme = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -149,6 +150,13 @@ public class frmNotas extends javax.swing.JFrame {
             }
         });
 
+        btnInforme.setText("Generar Informe");
+        btnInforme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
         jpContenedor.setLayout(jpContenedorLayout);
         jpContenedorLayout.setHorizontalGroup(
@@ -160,8 +168,10 @@ public class frmNotas extends javax.swing.JFrame {
                     .addComponent(jScrollPane2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContenedorLayout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(184, 184, 184)
+                        .addGap(18, 18, 18)
                         .addComponent(btnEditar)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnInforme)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegresar))
                     .addGroup(jpContenedorLayout.createSequentialGroup()
@@ -217,7 +227,8 @@ public class frmNotas extends javax.swing.JFrame {
                 .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegresar)
                     .addComponent(btnGuardar)
-                    .addComponent(btnEditar))
+                    .addComponent(btnEditar)
+                    .addComponent(btnInforme))
                 .addContainerGap())
         );
 
@@ -246,6 +257,7 @@ public class frmNotas extends javax.swing.JFrame {
             String[] nuevoValor = {String.valueOf(this.jTable1.getModel().getValueAt(0, i))};
             tablaEditor.modificar(nuevoValor, columnas, "idnota", this.idNota[i]);
         }
+        setModeloTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cmbxMateriasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxMateriasItemStateChanged
@@ -259,6 +271,12 @@ public class frmNotas extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         modoEditar();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeActionPerformed
+        
+        plantillaPdf plantillaNota = new plantillaPdf("C:\\UsersLocal\\Escritorio"+"\\reportePruebaNotas.pdf",this.modeloTabla);
+        plantillaNota.plantillaNotas();
+    }//GEN-LAST:event_btnInformeActionPerformed
 
     //Define los datos que se mostraran en el frm
     public void setDatos(String id, String apellido1, String apellido2, String nombre, String sexo, String fechaNacimiento) {
@@ -418,6 +436,7 @@ public class frmNotas extends javax.swing.JFrame {
     private tareafinal_prnii.frmpTitulo barraTitulo;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnInforme;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbxMaterias;
     private javax.swing.JScrollPane jScrollPane2;

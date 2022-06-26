@@ -45,6 +45,7 @@ public class listaAlumnos extends javax.swing.JFrame {
         btnGenerarPdf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lista Alumnos");
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -54,7 +55,7 @@ public class listaAlumnos extends javax.swing.JFrame {
         });
 
         frmpTitulo1.setFuente(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        frmpTitulo1.setTitulo("Alumnos");
+        frmpTitulo1.setTitulo("Listado de Alumnos");
         frmpTitulo1.setToolTipText("");
         frmpTitulo1.setVisibleMaximizar(false);
 
@@ -98,7 +99,7 @@ public class listaAlumnos extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
 
-        btnGenerarPdf.setText("Generar");
+        btnGenerarPdf.setText("Generar Reporte");
         btnGenerarPdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarPdfActionPerformed(evt);
