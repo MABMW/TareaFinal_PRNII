@@ -21,6 +21,7 @@ public class frmNotas extends javax.swing.JFrame {
     };
     String[] encabezados = {"Nota1", "Nota2", "Nota3", "Nota4"};
     String[][] notas = new String[20][5];//Son 4 materia y 4 evaluaciones entonces serian 16 como maximo a guardar
+    String[] idNota = new String[4];
     boolean modoEdicion = false;
 
     public frmNotas() {
@@ -275,7 +276,8 @@ public class frmNotas extends javax.swing.JFrame {
     private void btnInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeActionPerformed
         
         plantillaPdf plantillaNota = new plantillaPdf("C:\\UsersLocal\\Escritorio"+"\\reportePruebaNotas.pdf",this.modeloTabla);
-        plantillaNota.plantillaNotas();
+        infoAlumno info = new infoAlumno(this.txtId.getText(),this.txtNombre.getText(),this.txtSexo.getText(),this.txtFechaNacimiento.getText(),this.notas);
+        plantillaNota.plantillaNotas(info);
     }//GEN-LAST:event_btnInformeActionPerformed
 
     //Define los datos que se mostraran en el frm
@@ -328,7 +330,8 @@ public class frmNotas extends javax.swing.JFrame {
                 break;
         }
     }
-    String[] idNota = new String[4];
+    
+    
     //Configura el modeloTabla para el jtable, aqui se agregan las notas al jtable
     private void setModeloTabla() {
         int cualColumna = 0;
