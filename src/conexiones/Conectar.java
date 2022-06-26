@@ -18,10 +18,11 @@ public class Conectar {
     private String nombrebasedeDatos="baseDeDatos";
     private String urldataBase;
     
+    //Agrega los eventos
     public void addEventListener(CambioEventos listener) {
         listasEventos.add(listener);
     }
-    
+    //Si se conecto correctamente
     private void correctaConexion() {
         ListIterator li = listasEventos.listIterator();
         while (li.hasNext()) {

@@ -1,6 +1,7 @@
 package tareafinal_prnii;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class MetodosG {
 
@@ -51,5 +52,15 @@ public class MetodosG {
         ImageIcon myicono = new ImageIcon(getClass().getClassLoader().getResource(icopath));
         //this.lblIcono.setIcon(myicons);
         return myicono.getImage();
+    }
+    
+     /**
+     * Metodo para depurar la salida de comandos para mysql
+     * @param values 
+     **/
+    public static void sms(String values) {
+        java.awt.TextArea t = new java.awt.TextArea();
+        t.setText(values);
+        JOptionPane.showMessageDialog(null, t);
     }
 }

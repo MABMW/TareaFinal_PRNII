@@ -169,14 +169,7 @@ public class TablaEditor {
         }
         return 0;
     }
-    /**
-     * Metodo para depurar la salida de comandos para mysql
-     **/
-    private void sms(String values) {
-        java.awt.TextArea t = new java.awt.TextArea();
-        t.setText(values);
-        JOptionPane.showMessageDialog(null, t);
-    }
+   
 }
 
 enum metodos {

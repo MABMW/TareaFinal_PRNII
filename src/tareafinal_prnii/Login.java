@@ -12,7 +12,7 @@ public class Login extends javax.swing.JFrame {
     CambioEventos CE = new CambioEventos() {
         @Override
         public void onCorrectaConexion(Eventos ev) {
-            
+           // JOptionPane.showMessageDialog(null, "Correcta Conexion");
         }
         @Override
         public void onErroneaConexion(Eventos ev, SQLException MensajeError) {
@@ -206,6 +206,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionMouseClicked
 
     private void jchkModoAvanzadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jchkModoAvanzadoMouseClicked
+
         if (this.jchkModoAvanzado.isSelected()) {
             this.txtNombreBaseDeDatos.setText("grado");
             this.txtNombreBaseDeDatos.setEnabled(true);
