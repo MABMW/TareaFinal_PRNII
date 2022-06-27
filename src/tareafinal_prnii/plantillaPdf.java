@@ -288,10 +288,10 @@ public class plantillaPdf {
                     promedioMate = promedioMate+ Float.valueOf(infoAlumno.getNotas()[i][2])/4;
                 }else if(i<8 && i>3){
                     promedioLite = promedioLite + Float.valueOf(infoAlumno.getNotas()[i][2])/4;
-                }else if(i<12 && i>8){
-                    promedioCiencia = promedioCiencia + Float.valueOf(infoAlumno.getNotas()[i][2])/2;
-                }else if(i<16 && i>12){
-                    promedioSociales = promedioSociales + Float.valueOf(infoAlumno.getNotas()[i][2])/2;
+                }else if(i<12 && i>7){
+                    promedioCiencia = promedioCiencia + Float.valueOf(infoAlumno.getNotas()[i][2])/4;
+                }else if(i<16 && i>11){
+                    promedioSociales = promedioSociales + Float.valueOf(infoAlumno.getNotas()[i][2])/4;
                 }
             }
             tablaNotas.addCell(ingresoNotas);
