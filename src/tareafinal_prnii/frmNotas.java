@@ -41,7 +41,8 @@ public class frmNotas extends javax.swing.JFrame {
         tablaEditor = new TablaEditor(conectar, "notaAlumnos");
     }
 
-    @SuppressWarnings("unchecked")
+          
+          @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -265,6 +266,11 @@ public class frmNotas extends javax.swing.JFrame {
             String[] nuevoValor = {String.valueOf(this.jTable1.getModel().getValueAt(0, i))};
             tablaEditor.modificar(nuevoValor, columnas, "idnota", this.idNota[i]);
         }
+        setDatos();
+        if (modeloTabla.getRowCount() > 0) {
+            modeloTabla.removeRow(0);
+        }
+        
         setModeloTabla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -281,7 +287,6 @@ public class frmNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformeActionPerformed
-
         JFileChooser jfc = new JFileChooser();
         int select = jfc.showOpenDialog(null);
         if (select == JFileChooser.APPROVE_OPTION) {
@@ -314,6 +319,25 @@ public class frmNotas extends javax.swing.JFrame {
         } catch (SQLException ex) {
         }
     }
+    
+    private void setDatos(){
+         //buscar las notas
+        ResultSet rs = tablaEditor.buscardato("idAlumno", this.txtId.getText());
+        int count = 0;
+        try {
+            while (rs.next()) {
+                notas[count][0] = rs.getString(1);
+                notas[count][1] = rs.getString(2);
+                notas[count][2] = rs.getString(3);
+                notas[count][3] = rs.getString(4);
+                notas[count][4] = rs.getString(5);
+                count++;
+            }
+            cambioMateria();
+        } catch (SQLException ex) {
+        }
+    }
+    
 
     //Cuando en el comboBox se cambia de item se ejecutara este metodo, para actualizar la notas en la pantalla
     private void cambioMateria() {
